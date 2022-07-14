@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
+        .style-1 {
+            max-width: 450px;
+            background: #FAFAFA;
+            padding: 30px;
+            margin: 50px auto;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            border: 6px solid #5bc6b0;
+            margin: auto;
+            text-align: center;
+
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+            margin-right: 30px;
+            text-align: right;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul li {
+            display: block;
+            margin-bottom: 10px;
+            min-height: 35px;
+        }
+    </style>
+</head>
+
+
+<div class="style-1">
+    <p> <img src="../static/MessageMeLogo.PNG" width="100" height="150" class="center"></p>
+    <ul>
+        <li>
+            <label for="UserName">Your name:</label>
+            <input type="text" id="userName" name="userName" placeholder="Joe Shmo">
+        </li>
+        <li>
+            <label for="User">Your phone #:</label>
+            <input type="text" id="userPhoneNumber" name="userPhone" placeholder="2151234567">
+        </li>
+        <li>
+            <label for="Recipient">Recipient phone #:</label>
+            <input type="text" id="recipientPhoneNumber" name="recipient" placeholder="2151234567">
+        </li>
+        <li>
+            <label for="Message">Message:</label>
+            <input type="textarea" id="userMessage" name="message" placeholder="Happy Birthday">
+        </li>
+        <li>
+            <label for="Date">Date to send:</label>
+            <input type="datetime" id="SendDate" name="date" placeholder="May 09, 2022">
+        </li>
+        <li>
+            <button type="submit" onclick="submitFunction()" class="center">Submit</button>
+        </li>
+    </ul>
+</div>
+<div id="done" class="style-1"></div>
+
+<script src="/static/includes/jquery-3.6.0.min.js"></script>
+<script>
+    function submitFunction(data) {
+        phone = $("#recipientPhoneNumber").val();
+        userName = $("#userName").val();
+        userPhone = $("#userPhoneNumber").val();
+        msg = $("#userMessage").val();
+        sendDate = $("#SendDate").val();
+        sendTime = $("#SendTime").val();
+
+        $.get("/notify?recipient=" + phone + "&message=" + msg + "&userName=" + userName + "&userPhone=" + userPhone + "&sendDate=" + sendDate + "&sendTime=" + sendTime, function (data) {
+            json_obj = JSON.parse(data);
+
+            $("#done").html("Your message to " + phone + " will be sent on " + sendDate + ". Congratulations!");
+
+        });
+
+    }     
+</script>
+
+</html>
