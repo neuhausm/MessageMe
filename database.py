@@ -1,6 +1,6 @@
 import mysql.connector
 from datetime import date
-PASSWORD = 'yaya2000'
+PASSWORD = ''
 USER = 'root'
 HOST = 'localhost'
 DATABASE = 'message_schema'
