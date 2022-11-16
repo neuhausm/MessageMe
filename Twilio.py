@@ -1,7 +1,7 @@
 import requests
-X_RAPID_API_KEY = '5a598827cb1df771daa8746eac794d4b'
-TWILIO_PHONE_NUMBER = '+19177465798'
-SID = 'AC2971234654291b575ae9c6c249759e49'
+X_RAPID_API_KEY = ''
+TWILIO_PHONE_NUMBER = ''
+SID = ''
 
 def sendText(pn,msg):
     from requests.auth import HTTPBasicAuth
